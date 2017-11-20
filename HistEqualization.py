@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-class Histogram_Equalization:
+class Histogram_Equalization(object):
 
     def compute_histogram(self, image):
         """Computes the histogram of the input image
@@ -82,7 +82,7 @@ class Histogram_Equalization:
         #plt.figure(2)
         #hist_fig2 = plt.plot(hist2)
         #plt.savefig("hist_flattened_image.png")
-
+        print('last')
         return flattened_image
 
 

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from HistEqualization import Histogram_Equalization
+import HistEqualization as equal
 
 class Transformation(object):
     def compute_histogram(self, image):
@@ -28,14 +28,17 @@ class Transformation(object):
         return cv2.LUT(image, table)
 
     def histogram_equalization(self, image):
-
-        eq = Histogram_Equalization()
+        eq = equal.Histogram_Equalization()
         image = np.uint8(image)
 
         # print(image)
         flat_image = eq.hist_equalization(image)
-
         return flat_image
+
+    def negative(self,image):
+        return 255-image
+
+
 
 
 
