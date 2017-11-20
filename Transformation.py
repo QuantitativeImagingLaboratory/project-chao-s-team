@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from HistEqualization import Histogram_Equalization
 
 class Transformation(object):
     def compute_histogram(self, image):
@@ -24,7 +25,19 @@ class Transformation(object):
         table = np.array([((i / 255.0) ** invGamma) * 255 
             for i in np.arange(0, 256)]).astype("uint8")
         # apply gamma correction using the lookup table              
-        return cv2.LUT(image, table)  
+        return cv2.LUT(image, table)
+
+    def histogram_equalization(self, image):
+
+        eq = Histogram_Equalization()
+        image = np.uint8(image)
+
+        # print(image)
+        flat_image = eq.hist_equalization(image)
+
+        return flat_image
+
+
 
 """
 original = cv2.imread("lena512.bmp",0)

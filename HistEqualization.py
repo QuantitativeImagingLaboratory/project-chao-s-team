@@ -37,7 +37,7 @@ class Histogram_Equalization:
         for i in range(0, x):
             sum = sum + cumulative_hist[i]
             cumulative_hist[i] = sum
-        #print(len(cumulative_hist))
+
         return cumulative_hist
 
 
@@ -69,19 +69,19 @@ class Histogram_Equalization:
     def hist_equalization(self, image):
 
         hist = self.compute_histogram(image)
-        plt.figure(1)
-        hist_fig = plt.plot(hist)
-        plt.savefig("hist_original_image.png")
+        #plt.figure(1)
+        #hist_fig = plt.plot(hist)
+        #plt.savefig("hist_original_image.png")
 
         normalized_hist = self.normalize_histogram(hist, image)
         cumulative_hist = self.cumulative_histogram(normalized_hist)
         intermediate_image = self.compute_intermediate_imageJ1(image, cumulative_hist)
         flattened_image = self.compute_flattened_image(intermediate_image)
 
-        hist2 = self.compute_histogram(flattened_image)
-        plt.figure(2)
-        hist_fig2 = plt.plot(hist2)
-        plt.savefig("hist_flattened_image.png")
+        #hist2 = self.compute_histogram(flattened_image)
+        #plt.figure(2)
+        #hist_fig2 = plt.plot(hist2)
+        #plt.savefig("hist_flattened_image.png")
 
         return flattened_image
 
