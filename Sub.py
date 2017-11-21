@@ -9,15 +9,17 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import cv2
 from datetime import datetime
 import Transformation as filters
+import UIFunctions
 
 # UI for histogram
-class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow):
+class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self, parent=None):
         super(Sub, self).__init__(parent)
         self.setupUi(self)
         self.origImage.clicked.connect(self.loadImage)
         self.Run.clicked.connect(self.RunBttn)
-        self.destination.clicked.connect(self.saveImage)
+        self.destination.clicked.connect(self.getDestButton)
+        self.Save.clicked.connect(self.saveButton)
 
     def loadImage(self):
         options = QtWidgets.QFileDialog.Options()
@@ -42,16 +44,23 @@ class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow):
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
 
+    def saveButton(self):
+        try:
+            saved=self.savehisttofile(self.savepath,self.hist)
+        except:
+            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+    
+
 
     def displayProcessedIamge(self):
         input_image = self.openImage()
-        hist=self.processImage(input_image)
+        self.hist=self.processImage(input_image)
         scene = QtWidgets.QGraphicsScene(self)
         self.scene = scene
         figure = Figure()
         axes = figure.gca()
         axes.set_title("Histogram")
-        axes.plot(hist)
+        axes.plot(self.hist)
         canvas = FigureCanvas(figure)
         canvas.setGeometry(0, 0, 440, 460)
         scene.addWidget(canvas)
@@ -64,26 +73,9 @@ class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow):
     def openImage(self):
         input_image = cv2.imread(self.fileName, 0)
         return input_image
-
-    def save(self,path,image):
-        output_image_name = path + "/Histogram" + datetime.now().strftime("%m%d-%H%M%S") + ".jpg"
-        cv2.imwrite(output_image_name, image)
         
         
 
-
-
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    form = Sub()
-    form.show()
-    app.exec_()
-
-
-if __name__ == '__main__':
-    main()
 
 
 

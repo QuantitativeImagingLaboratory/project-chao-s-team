@@ -6,17 +6,19 @@ import matplotlib.pyplot as plt
 from PyQt5.Qt import Qt
 import cv2
 import SubWin_img
-from datetime import datetime
+import UIFunctions
 import Transformation as filters
 
+
 # UI for gamma with paramenter
-class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow):
+class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self, parent=None):
         super(Sub_img, self).__init__(parent)
         self.setupUi(self)
         self.origImage.clicked.connect(self.loadImage)
         self.Run.clicked.connect(self.RunBttn)
-        self.destination.clicked.connect(self.saveImage)
+        self.destination.clicked.connect(self.getDestButton)
+        self.Save.clicked.connect(self.saveButton)
 
     def loadImage(self):
         options = QtWidgets.QFileDialog.Options()
@@ -25,29 +27,35 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow):
         if self.fileName:
             print(self.fileName)
             pixmap = QtGui.QPixmap(self.fileName)
+            self.OriginalImage.setScaledContents(True)
             self.OriginalImage.setPixmap(pixmap)
             #self.resize(pixmap.width(),pixmap.height())
-
-    def saveImage(self):
-    	options = QtWidgets.QFileDialog.Options()
-    	options |= QtWidgets.QFileDialog.DontUseNativeDialog
-    	self.savepath = QtWidgets.QFileDialog.getExistingDirectory(self,"Pick a directory","",options =options)
-    	if self.savepath:
-    		print(self.savepath)
 
     def RunBttn(self):
         try:
             self.displayProcessedIamge()
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
-        
+    
+    def saveButton(self):
+        try:
+            saved=self.savetofile(self.savepath,self.img,'Gamma')
+            if saved:
+                print('saved')
+            else:
+                box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+                print('save error')
+        except:
+            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
 
 
+    
     def displayProcessedIamge(self):
         input_image = self.openImage()
-        img=self.processImage(input_image)
+        self.img=self.processImage(input_image)
 
-        pixmap=self.covertnumpyimg(img)
+        pixmap=self.covertnumpyimg(self.img)
+        self.processed.setScaledContents(True)
         self.processed.setPixmap(pixmap)
 
 
@@ -73,23 +81,5 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow):
             self.value = float(text)
         except:
             box=QtWidgets.QMessageBox.about(self,"Invalid number","Type a valid number")
-    
-    def save(self,path,image):
-        output_image_name = path + "/Gamma" + datetime.now().strftime("%m%d-%H%M%S") + ".jpg"
-        cv2.imwrite(output_image_name, image)
 
 
-
-
-
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    form = Sub_img()
-    form.show()
-    app.exec_()
-
-
-if __name__ == '__main__':
-    main()

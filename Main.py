@@ -36,7 +36,7 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
         Sub_img_nopa(self,'equal').show()
         
     def shaping(self):
-        Sub_img_nopa(self,'shaping').show()
+        Sub_img_nopa(self,'matching').show()
 
    
 def main():
