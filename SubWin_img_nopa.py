@@ -38,8 +38,9 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
         
     def saveButton(self):
+        saved=self.savetofile(self.savepath,self.img,self.type)
         try:
-            saved=self.savetofile(self.savepath,self.img,self.type)
+            #saved=self.savetofile(self.savepath,self.img,self.type)
             if saved:
                 print('saved')
             else:
@@ -63,7 +64,7 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
             img=filters.Transformation().negative(input_image)
             print("neg")
         elif self.type == 'log':
-
+            img=filters.Transformation().log(input_image)
             print('log')
         elif self.type == 'equal':
             img=filters.Transformation().histogram_equalization(input_image)
@@ -71,7 +72,6 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
         elif self.type == 'matching':
             img=filters.Transformation().histogram_equalization(input_image)
             print('matching')
-            #img=filters.Transformation().adjust_gamma(input_image,self.value)
         return img
 
     def openImage(self):

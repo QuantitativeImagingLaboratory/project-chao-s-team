@@ -38,6 +38,14 @@ class Transformation(object):
     def negative(self,image):
         return 255-image
 
+    def log(self,image):
+        c=255/(np.log(1+255))
+        image.astype(float)
+        image=g = c*(np.log(1 + image))
+        return image.astype(np.uint8)
+
+
+
 
 
 

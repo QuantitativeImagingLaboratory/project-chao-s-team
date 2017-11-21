@@ -13,7 +13,6 @@ class SaveFunctions:
             return self.savepath
         else:
             box=QtWidgets.QMessageBox.about(self,"error","Error with getting file path")
-        return savepath
         
     def savetofile(self,path,image,type):
         output_image_name = path + "/"+type+"_"+ datetime.now().strftime("%m%d-%H%M%S") + ".jpg"
@@ -25,7 +24,7 @@ class SaveFunctions:
         hist_fig = plt.plot(hist)
         output_image_name = path + "/"
         plt.savefig(output_image_name+"hist.png")
-        
+
     def getDestButton(self):
         self.savepath=self.saveImagePath()
 
