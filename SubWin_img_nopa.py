@@ -38,9 +38,8 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
         
     def saveButton(self):
-        saved=self.savetofile(self.savepath,self.img,self.type)
         try:
-            #saved=self.savetofile(self.savepath,self.img,self.type)
+            saved=self.savetofile(self.savepath,self.img,self.type)
             if saved:
                 print('saved')
             else:

@@ -15,7 +15,7 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
         self.Log.clicked.connect(self.log)
         self.Histogram.clicked.connect(self.openSubWin)
         self.Equalization.clicked.connect(self.equal)
-        self.Shaping.clicked.connect(self.shaping)
+        self.Shaping.clicked.connect(self.matching)
         self.Gamma.clicked.connect(self.openSubWin_img)
 
     #histogram
@@ -35,7 +35,7 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
     def equal(self):
         Sub_img_nopa(self,'equal').show()
         
-    def shaping(self):
+    def matching(self):
         Sub_img_nopa(self,'matching').show()
 
    
