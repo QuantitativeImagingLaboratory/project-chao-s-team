@@ -10,7 +10,7 @@ import UIFunctions
 import Transformation as filters
 
 
-# UI for gamma with paramenter
+# UI for gamma with paramenter slider
 class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self, parent=None):
         super(Sub_img, self).__init__(parent)
@@ -19,6 +19,12 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
         self.Run.clicked.connect(self.RunBttn)
         self.destination.clicked.connect(self.getDestButton)
         self.Save.clicked.connect(self.saveButton)
+        self.Slider.setMinimum(0)
+        self.Slider.setMaximum(100)
+        self.Slider.setValue(1)
+        self.Slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
+        self.Slider.setTickInterval(1)
+        self.Slider.valueChanged.connect(self.gammachanged)
 
     def loadImage(self):
         options = QtWidgets.QFileDialog.Options()
@@ -47,6 +53,11 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
                 print('save error')
         except:
             box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+    
+    def gammachanged(self):
+        fvalue=self.changetofloat(self.Slider.value())
+        value="Gamma value: "+ str(fvalue)
+        self.ParameterLabel.setText(value)
 
 
     
@@ -76,10 +87,14 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
         return pix
     
     def getParameterValue(self):
-        text = self.ParameterValue.toPlainText()
+        value=self.changetofloat(self.Slider.value())
+
         try:
-            self.value = float(text)
+            self.value = float(value)
         except:
             box=QtWidgets.QMessageBox.about(self,"Invalid number","Type a valid number")
+    def changetofloat(self,value):
+        fvalue=float(value)/10
+        return fvalue
 
 

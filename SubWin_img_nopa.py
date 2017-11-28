@@ -9,7 +9,7 @@ import SubWinNop
 import UIFunctions
 import Transformation as filters
 
-# UI for gamma with paramenter
+# UI for gamma without paramenter
 class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
         super(Sub_img_nopa, self).__init__(parent)
