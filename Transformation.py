@@ -35,6 +35,20 @@ class Transformation(object):
         flat_image = eq.hist_equalization(image)
         return flat_image
 
+    def histogram_equalization_normalize(self,image):
+        eq = equal.Histogram_Equalization()
+        image = np.uint8(image)
+        hist=eq.compute_histogram(image)
+        norm_hist=eq.normalize_histogram(hist,image)
+        return norm_hist
+
+    def histogram_equalization_cumulative(self,image):
+        eq = equal.Histogram_Equalization()
+        hist=self.histogram_equalization_normalize(image)
+        cum_hist=eq.cumulative_histogram(hist)
+        return cum_hist
+
+
     def negative(self,image):
         return 255-image
 

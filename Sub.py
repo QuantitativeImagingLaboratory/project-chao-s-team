@@ -46,7 +46,7 @@ class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow,UIFunctions.SaveFunctions)
 
     def saveButton(self):
         try:
-            saved=self.savehisttofile(self.savepath,self.hist)
+            saved=self.savehisttofile(self.savepath,self.hist,'hist')
         except:
             box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
     

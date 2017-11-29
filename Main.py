@@ -4,6 +4,7 @@ import MainWin
 import Sub
 from Sub_img import Sub_img
 from SubWin_img_nopa import Sub_img_nopa
+from SubWin_equal import Sub_equal
 
 
 
@@ -33,7 +34,7 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
         Sub_img_nopa(self,'log').show()
 
     def equal(self):
-        Sub_img_nopa(self,'equal').show()
+        Sub_equal(self,'equal').show()
         
     def matching(self):
         Sub_img_nopa(self,'matching').show()

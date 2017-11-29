@@ -20,10 +20,17 @@ class SaveFunctions:
             return True
         else:
             return False
+        """
     def savehisttofile(self,path,hist):
         hist_fig = plt.plot(hist)
-        output_image_name = path + "/"
+        output_image_name = path + "/"+datetime.now().strftime("%m%d-%H%M%S")
         plt.savefig(output_image_name+"hist.png")
+        """
+    def savehisttofile(self,path,hist,type):
+        hist_fig = plt.plot(hist)
+        output_image_name = path + "/"+datetime.now().strftime("%m%d-%H%M%S")
+        plt.savefig(output_image_name+type+"hist.png")
+        plt.clf()
 
     def getDestButton(self):
         self.savepath=self.saveImagePath()
