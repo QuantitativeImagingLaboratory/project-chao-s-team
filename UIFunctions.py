@@ -35,3 +35,19 @@ class SaveFunctions:
     def getDestButton(self):
         self.savepath=self.saveImagePath()
 
+    #convert numpy image mat to QImage 
+    def cvImageToQImage(self,image):
+        cvRGBImg = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        qimg = QtGui.QImage(cvRGBImg.data,cvRGBImg.shape[1], cvRGBImg.shape[0], QtGui.QImage.Format_RGB888)
+        pix = QtGui.QPixmap.fromImage(qimg)
+        return pix
+    
+    #convert gray scaled numpy image mat to QImage 
+    def covertnumpyimg(self,image):
+        gray_color_table = [QtGui.qRgb(i, i, i) for i in range(256)]
+        image = QtGui.QImage(image, image.shape[1],image.shape[0], image.strides[0], QtGui.QImage.Format_Indexed8)
+        image.setColorTable(gray_color_table)
+        pix = QtGui.QPixmap(image)
+        return pix
+
+

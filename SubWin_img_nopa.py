@@ -9,7 +9,7 @@ import SubWinNop
 import UIFunctions
 import Transformation as filters
 
-# UI for gamma without paramenter
+# UI for other
 class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
         super(Sub_img_nopa, self).__init__(parent)
@@ -53,7 +53,8 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
         input_image = self.openImage()
         self.img=self.processImage(input_image)
 
-        pixmap=self.covertnumpyimg(self.img)
+        #pixmap=self.covertnumpyimg(self.img)
+        pixmap=self.cvImageToQImage(self.img)
         self.processed.setScaledContents(True)
         self.processed.setPixmap(pixmap)
 
@@ -74,12 +75,6 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
         return img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName, 0)
+        input_image = cv2.imread(self.fileName, 1)
         return input_image
     
-    def covertnumpyimg(self,image):
-        gray_color_table = [QtGui.qRgb(i, i, i) for i in range(256)]
-        image = QtGui.QImage(image, image.shape[1],image.shape[0], image.strides[0], QtGui.QImage.Format_Indexed8)
-        image.setColorTable(gray_color_table)
-        pix = QtGui.QPixmap(image)
-        return pix

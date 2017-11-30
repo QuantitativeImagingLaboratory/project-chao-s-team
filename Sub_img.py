@@ -42,7 +42,7 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
             self.displayProcessedIamge()
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
-    
+        
     def saveButton(self):
         try:
             saved=self.savetofile(self.savepath,self.img,'Gamma')
@@ -65,7 +65,8 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
         input_image = self.openImage()
         self.img=self.processImage(input_image)
 
-        pixmap=self.covertnumpyimg(self.img)
+        #pixmap=self.covertnumpyimg(self.img)
+        pixmap=self.cvImageToQImage(self.img)
         self.processed.setScaledContents(True)
         self.processed.setPixmap(pixmap)
 
@@ -76,16 +77,9 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
         return img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName, 0)
+        input_image = cv2.imread(self.fileName)
         return input_image
-    
-    def covertnumpyimg(self,image):
-        gray_color_table = [QtGui.qRgb(i, i, i) for i in range(256)]
-        image = QtGui.QImage(image, image.shape[1],image.shape[0], image.strides[0], QtGui.QImage.Format_Indexed8)
-        image.setColorTable(gray_color_table)
-        pix = QtGui.QPixmap(image)
-        return pix
-    
+
     def getParameterValue(self):
         value=self.changetofloat(self.Slider.value())
 
