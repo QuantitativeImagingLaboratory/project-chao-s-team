@@ -59,16 +59,28 @@ class Histogram_Color(QtWidgets.QMainWindow, histColorUI.Ui_MainWindow,UIFunctio
     def displayProcessedIamge(self):
         input_image = self.openImage()
         self.hist=self.processImage(input_image)
+
+        sceneR=self.setcanvas('Red',self.hist[0])
+        self.hist1.setScene(sceneR)
+        
+        sceneG=self.setcanvas('Green',self.hist[1])
+        self.hist2.setScene(sceneG)
+
+        sceneB=self.setcanvas('Blue',self.hist[2])
+        self.hist3.setScene(sceneB)
+        
+
+    def setcanvas(self,color,hist):
         sceneR = QtWidgets.QGraphicsScene(self)
         figureR = Figure()
         axesR = figureR.gca()
-        axesR.set_title("Histogram")
-        axesR.plot(self.hist[0])
+        title='Histogram '+ color
+        axesR.set_title(title)
+        axesR.plot(hist)
         canvasR = FigureCanvas(figureR)
         canvasR.setGeometry(0, 0, 430, 220)
         sceneR.addWidget(canvasR)
-        self.hist1.setScene(sceneR)
-    
+        return sceneR
 
     def processImage(self,input_image):
         hist=filters.Transformation().compute_histogram_color(input_image)
