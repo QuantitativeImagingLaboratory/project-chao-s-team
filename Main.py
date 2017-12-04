@@ -7,6 +7,7 @@ from SubWin_img_nopa import Sub_img_nopa
 from SubWin_equal import Sub_equal
 from SubWin_equal_color import Sub_equal_color
 from Histogram_Color import Histogram_Color
+from Matching import Matching
 
 
 
@@ -47,7 +48,7 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
         Sub_equal_color(self,'equal_color').show()
         
     def matching(self):
-        Sub_img_nopa(self,'matching').show()
+        Matching(self,'matching').show()
     
 
    
