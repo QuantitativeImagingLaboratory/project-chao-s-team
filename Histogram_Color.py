@@ -40,17 +40,17 @@ class Histogram_Color(QtWidgets.QMainWindow, histColorUI.Ui_MainWindow,UIFunctio
     		print(self.savepath)
 
     def RunBttn(self):
-        self.displayProcessedIamge()
-        """
         try:
             self.displayProcessedIamge()
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
-        """
+       
 
     def saveButton(self):
         try:
-            saved=self.savehisttofile(self.savepath,self.hist,'hist')
+            saved=self.savehisttofile(self.savepath,self.hist[0],'hist_Red')
+            saved=self.savehisttofile(self.savepath,self.hist[1],'hist_Green')
+            saved=self.savehisttofile(self.savepath,self.hist[2],'hist_Blue')
         except:
             box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
     
