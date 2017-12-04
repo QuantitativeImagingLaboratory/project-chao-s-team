@@ -12,9 +12,9 @@ import UIFunctions
 import Transformation as filters
 
 # UI for gamma without paramenter
-class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions.SaveFunctions):
+class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
-        super(Sub_equal, self).__init__(parent)
+        super(Sub_equal_color, self).__init__(parent)
         self.setupUi(self)
         self.origImage.clicked.connect(self.loadImage)
         self.Run.clicked.connect(self.RunBttn)
@@ -110,7 +110,7 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    form = Sub_equal(None,'equal')
+    form = Sub_equal_color(None,'equal')
     form.show()
     app.exec_()
 

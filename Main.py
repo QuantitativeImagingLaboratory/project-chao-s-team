@@ -5,6 +5,8 @@ import Sub
 from Sub_img import Sub_img
 from SubWin_img_nopa import Sub_img_nopa
 from SubWin_equal import Sub_equal
+from SubWin_equal_color import Sub_equal_color
+from Histogram_Color import Histogram_Color
 
 
 
@@ -18,10 +20,15 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
         self.Equalization.clicked.connect(self.equal)
         self.Shaping.clicked.connect(self.matching)
         self.Gamma.clicked.connect(self.openSubWin_img)
+        self.histogram_color.clicked.connect(self.histogramColor)
+        self.Equalization_color.clicked.connect(self.equal_color)
 
-    #histogram
+    #histogram grayscale
     def openSubWin(self):
     	Sub.Sub(self).show()
+    #histgram color
+    def histogramColor(self):
+        Histogram_Color(self).show()
     
     #gamma 
     def openSubWin_img(self):
@@ -35,9 +42,13 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
 
     def equal(self):
         Sub_equal(self,'equal').show()
+    
+    def equal_color(self):
+        Sub_equal_color(self,'equal_color').show()
         
     def matching(self):
         Sub_img_nopa(self,'matching').show()
+    
 
    
 def main():

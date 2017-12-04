@@ -96,8 +96,6 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         scene.addWidget(canvas)
         self.hist2.setScene(scene)
 
-    
-
 
     def processImage(self,input_image):
         img=filters.Transformation().histogram_equalization(input_image)
@@ -105,15 +103,9 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         return img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName, 0)
+        input_image = cv2.imread(self.fileName,0)
+        print(input_image.dtype)
         return input_image
-    
-    def covertnumpyimg(self,image):
-        gray_color_table = [QtGui.qRgb(i, i, i) for i in range(256)]
-        image = QtGui.QImage(image, image.shape[1],image.shape[0], image.strides[0], QtGui.QImage.Format_Indexed8)
-        image.setColorTable(gray_color_table)
-        pix = QtGui.QPixmap(image)
-        return pix
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

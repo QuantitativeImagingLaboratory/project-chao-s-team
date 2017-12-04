@@ -38,3 +38,9 @@ def Arraytob64(array):
 	im.save(rawBytes, "JPEG")
 	rawBytes.seek(0)  # return to the start of the file
 	return base64.b64encode(rawBytes.read())
+
+original = cv2.imread("Lenna.png")
+math=cv2.imread('Lenna0.jpg')
+adjusted = histogramMatching(original,math)
+cv2.imshow("Images",adjusted)
+cv2.waitKey(0)
