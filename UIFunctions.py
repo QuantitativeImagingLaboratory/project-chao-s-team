@@ -28,6 +28,7 @@ class SaveFunctions:
         """
     def savehisttofile(self,path,hist,type):
         hist_fig = plt.plot(hist)
+        plt.title(type)
         output_image_name = path + "/"+datetime.now().strftime("%m%d-%H%M%S")
         plt.savefig(output_image_name+type+"hist.png")
         plt.clf()

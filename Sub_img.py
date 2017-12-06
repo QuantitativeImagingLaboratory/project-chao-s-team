@@ -19,7 +19,7 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
         self.Run.clicked.connect(self.RunBttn)
         self.destination.clicked.connect(self.getDestButton)
         self.Save.clicked.connect(self.saveButton)
-        self.Slider.setMinimum(0)
+        self.Slider.setMinimum(1)
         self.Slider.setMaximum(100)
         self.Slider.setValue(1)
         self.Slider.setTickPosition(QtWidgets.QSlider.TicksBelow)

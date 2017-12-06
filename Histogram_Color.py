@@ -78,7 +78,7 @@ class Histogram_Color(QtWidgets.QMainWindow, histColorUI.Ui_MainWindow,UIFunctio
         axesR.set_title(title)
         axesR.plot(hist)
         canvasR = FigureCanvas(figureR)
-        canvasR.setGeometry(0, 0, 430, 220)
+        canvasR.setGeometry(0, 0, 430, 210)
         sceneR.addWidget(canvasR)
         return sceneR
 
