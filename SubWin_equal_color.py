@@ -80,7 +80,7 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
         figure = Figure()
         axes = figure.gca()
         axes.set_color_cycle(['red', 'green', 'blue'])
-        axes.set_title("Normalized Histogram of Original Image")
+        axes.set_title("Histogram of Original Image")
         axes.plot(self.hist_norm_R)
         axes.plot(self.hist_norm_G)
         axes.plot(self.hist_norm_B)
