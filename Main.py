@@ -10,7 +10,6 @@ from Histogram_Color import Histogram_Color
 from Matching import Matching
 
 
-
 class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
     def __init__(self, parent=None):
         super(Main, self).__init__(parent)

@@ -11,7 +11,7 @@ import SubWin_equal_UI
 import UIFunctions
 import Transformation as filters
 
-# UI for gamma without paramenter
+# equalization grayscale
 class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
         super(Sub_equal, self).__init__(parent)
@@ -54,7 +54,7 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
                 box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
                 print('save error')
         except:
-            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+            box=QtWidgets.QMessageBox.about(self,"error","please select directory first")
     
 
     def displayProcessedIamge(self):

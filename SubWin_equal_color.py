@@ -11,7 +11,8 @@ import SubWin_equal_UI
 import UIFunctions
 import Transformation as filters
 
-# UI for gamma without paramenter
+
+# equalization color
 class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
         super(Sub_equal_color, self).__init__(parent)
@@ -37,28 +38,27 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
 
         try:
             self.displayProcessedIamge()
+            self.displayHisto_normalize_before()
+            self.displayHisto_normalize_after()
 
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
-        
-        #self.displayHisto_cumulative()
-        self.displayHisto_normalize_before()
-        self.displayHisto_normalize_after()
-
+    
 
 
     def saveButton(self):
-        self.savehistofile_color(self.savepath,self.hists_before,'Original Image')
-        self.savehistofile_color(self.savepath,self.hists_after,'Processed Image')
+
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)
-            if saved:
+            saved2=self.savehistofile_color(self.savepath,self.hists_before,'Original Image')
+            saved3=self.savehistofile_color(self.savepath,self.hists_after,'Processed Image')
+            if saved and saved2 and saved3:
                 print('saved')
             else:
                 box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
                 print('save error')
         except:
-            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+            box=QtWidgets.QMessageBox.about(self,"error","please select directory first")
     
 
     def displayProcessedIamge(self):

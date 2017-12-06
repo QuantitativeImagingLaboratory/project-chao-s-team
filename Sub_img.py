@@ -52,7 +52,7 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
                 box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
                 print('save error')
         except:
-            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+            box=QtWidgets.QMessageBox.about(self,"error","please select directory first")
     
     def gammachanged(self):
         fvalue=self.changetofloat(self.Slider.value())

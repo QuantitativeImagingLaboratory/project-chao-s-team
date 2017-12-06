@@ -12,7 +12,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import HistoMatchingUI
 
-# UI for other
+# Histogram mathcing
 class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
         super(Matching, self).__init__(parent)
@@ -61,7 +61,7 @@ class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.
                 box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
                 print('save error')
         except:
-            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+            box=QtWidgets.QMessageBox.about(self,"error","please select directory first")
     
 
     def displayProcessedIamge(self):

@@ -8,3 +8,12 @@ required python package:
 Please save all script files under same directory 
 Run:
 python Main.py
+
+
+
+SubWin_equal_color.py: Histogram equalization color
+SubWin_equal.py: Histogram equalization grayscale
+Matching.py: Hisgogram Matching
+Histogram_Color.py: Histogram Color
+SubWin_img_nopa.py: histogram grayscale, log transformation, negative
+

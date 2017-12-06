@@ -9,7 +9,7 @@ import SubWinNop
 import UIFunctions
 import Transformation as filters
 
-# UI for other
+# histogram grayscale, log transformation, negative
 class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.SaveFunctions):
     def __init__(self,parent,flag):
         super(Sub_img_nopa, self).__init__(parent)
@@ -46,7 +46,7 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
                 box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
                 print('save error')
         except:
-            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+            box=QtWidgets.QMessageBox.about(self,"error","please select directory first")
     
 
     def displayProcessedIamge(self):

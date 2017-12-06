@@ -52,7 +52,7 @@ class Histogram_Color(QtWidgets.QMainWindow, histColorUI.Ui_MainWindow,UIFunctio
             saved=self.savehisttofile(self.savepath,self.hist[1],'hist_Green')
             saved=self.savehisttofile(self.savepath,self.hist[2],'hist_Blue')
         except:
-            box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
+            box=QtWidgets.QMessageBox.about(self,"error","please select directory first")
     
 
 
