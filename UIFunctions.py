@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from datetime import datetime
 import cv2
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 # handle saving file to disk
 class SaveFunctions:     
     def saveImagePath(self):
@@ -29,6 +30,17 @@ class SaveFunctions:
     def savehisttofile(self,path,hist,type):
         hist_fig = plt.plot(hist)
         plt.title(type)
+        output_image_name = path + "/"+datetime.now().strftime("%m%d-%H%M%S")
+        plt.savefig(output_image_name+type+"hist.png")
+        plt.clf()
+
+    def savehistofile_color(self,path,hists,type):
+        axes=plt.figure().gca()
+        axes.set_color_cycle(['red', 'green', 'blue'])
+        axes.set_title("Normalized Histogram of "+type)
+        axes.plot(hists[0])
+        axes.plot(hists[1])
+        axes.plot(hists[2])
         output_image_name = path + "/"+datetime.now().strftime("%m%d-%H%M%S")
         plt.savefig(output_image_name+type+"hist.png")
         plt.clf()

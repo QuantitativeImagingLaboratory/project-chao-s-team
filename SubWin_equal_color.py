@@ -48,8 +48,8 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
 
 
     def saveButton(self):
-        self.savehisttofile(self.savepath,self.hist_norm,'normalized')
-        self.savehisttofile(self.savepath,self.hist_cum,'cumulative')
+        self.savehistofile_color(self.savepath,self.hists_before,'Original Image')
+        self.savehistofile_color(self.savepath,self.hists_after,'Processed Image')
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)
             if saved:
@@ -72,10 +72,10 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
 
     def displayHisto_normalize_before(self):
         input_image = self.openImage()
-        hists=filters.Transformation().compute_histogram_color(input_image)
-        self.hist_norm_R=filters.Transformation().histogram_equalization_normalize_color(hists[0],input_image)
-        self.hist_norm_G=filters.Transformation().histogram_equalization_normalize_color(hists[1],input_image)
-        self.hist_norm_B=filters.Transformation().histogram_equalization_normalize_color(hists[2],input_image)
+        self.hists_before=filters.Transformation().compute_histogram_color(input_image)
+        self.hist_norm_R=filters.Transformation().histogram_equalization_normalize_color(self.hists_before[0],input_image)
+        self.hist_norm_G=filters.Transformation().histogram_equalization_normalize_color(self.hists_before[1],input_image)
+        self.hist_norm_B=filters.Transformation().histogram_equalization_normalize_color(self.hists_before[2],input_image)
         scene = QtWidgets.QGraphicsScene(self)
         figure = Figure()
         axes = figure.gca()
@@ -91,10 +91,10 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
         self.hist1.setScene(scene)
 
     def displayHisto_normalize_after(self):
-        hists=filters.Transformation().compute_histogram_color(self.img)
-        self.hist_norm_R=filters.Transformation().histogram_equalization_normalize_color(hists[0],self.img)
-        self.hist_norm_G=filters.Transformation().histogram_equalization_normalize_color(hists[1],self.img)
-        self.hist_norm_B=filters.Transformation().histogram_equalization_normalize_color(hists[2],self.img)
+        self.hists_after=filters.Transformation().compute_histogram_color(self.img)
+        self.hist_norm_R=filters.Transformation().histogram_equalization_normalize_color(self.hists_after[0],self.img)
+        self.hist_norm_G=filters.Transformation().histogram_equalization_normalize_color(self.hists_after[1],self.img)
+        self.hist_norm_B=filters.Transformation().histogram_equalization_normalize_color(self.hists_after[2],self.img)
         scene = QtWidgets.QGraphicsScene(self)
         figure = Figure()
         axes = figure.gca()
