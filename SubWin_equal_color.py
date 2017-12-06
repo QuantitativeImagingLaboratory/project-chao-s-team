@@ -42,7 +42,8 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
         
         #self.displayHisto_cumulative()
-        #self.displayHisto_normalize()
+        self.displayHisto_normalize_before()
+        self.displayHisto_normalize_after()
 
 
 
@@ -69,19 +70,44 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
         self.processed.setPixmap(pixmap)
 
 
-    def displayHisto_normalize(self):
+    def displayHisto_normalize_before(self):
         input_image = self.openImage()
-        self.hist_norm=filters.Transformation().histogram_equalization_normalize(input_image)
+        hists=filters.Transformation().compute_histogram_color(input_image)
+        self.hist_norm_R=filters.Transformation().histogram_equalization_normalize_color(hists[0],input_image)
+        self.hist_norm_G=filters.Transformation().histogram_equalization_normalize_color(hists[1],input_image)
+        self.hist_norm_B=filters.Transformation().histogram_equalization_normalize_color(hists[2],input_image)
         scene = QtWidgets.QGraphicsScene(self)
-        #self.scene = scene
         figure = Figure()
         axes = figure.gca()
-        axes.set_title("Normalized Histogram")
-        axes.plot(self.hist_norm)
+        axes.set_color_cycle(['red', 'green', 'blue'])
+        axes.set_title("Normalized Histogram of Original Image")
+        axes.plot(self.hist_norm_R)
+        axes.plot(self.hist_norm_G)
+        axes.plot(self.hist_norm_B)
+        #axes.legend(['Red Color', 'Green Color', 'Blue Color'], loc='upper left')
         canvas = FigureCanvas(figure)
         canvas.setGeometry(0, 0, 430, 220)
         scene.addWidget(canvas)
         self.hist1.setScene(scene)
+
+    def displayHisto_normalize_after(self):
+        hists=filters.Transformation().compute_histogram_color(self.img)
+        self.hist_norm_R=filters.Transformation().histogram_equalization_normalize_color(hists[0],self.img)
+        self.hist_norm_G=filters.Transformation().histogram_equalization_normalize_color(hists[1],self.img)
+        self.hist_norm_B=filters.Transformation().histogram_equalization_normalize_color(hists[2],self.img)
+        scene = QtWidgets.QGraphicsScene(self)
+        figure = Figure()
+        axes = figure.gca()
+        axes.set_color_cycle(['red', 'green', 'blue'])
+        axes.set_title("Normalized Histogram of Processed Image")
+        axes.plot(self.hist_norm_R)
+        axes.plot(self.hist_norm_G)
+        axes.plot(self.hist_norm_B)
+        #axes.legend(['Red Color', 'Green Color', 'Blue Color'], loc='upper left')
+        canvas = FigureCanvas(figure)
+        canvas.setGeometry(0, 0, 430, 220)
+        scene.addWidget(canvas)
+        self.hist2.setScene(scene)
 
     def displayHisto_cumulative(self):
         input_image = self.openImage()
@@ -99,9 +125,9 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
 
 
     def processImage(self,input_image):
-        img=filters.Transformation().histogram_equalization_color(input_image)
+        self.img=filters.Transformation().histogram_equalization_color(input_image)
         print("equal")
-        return img
+        return self.img
 
     def openImage(self):
         input_image = cv2.imread(self.fileName)

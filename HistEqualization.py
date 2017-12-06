@@ -27,6 +27,14 @@ class Histogram_Equalization(object):
 
         return norm_hist
 
+    def normalize_histogram_color(self, hist, image):
+        #normalize the histogram
+        #k=256
+        [x, y, z] = image.shape
+        norm_hist = np.array(hist)/(x*y)
+
+        return norm_hist
+
 
     def cumulative_histogram(self, norm_hist):
 

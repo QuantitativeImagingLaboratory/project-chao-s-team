@@ -78,6 +78,12 @@ class Transformation(object):
         cum_hist=eq.cumulative_histogram(hist)
         return cum_hist
 
+    def histogram_equalization_normalize_color(self,hist,image):
+        eq = equal.Histogram_Equalization()
+        norm_hist=eq.normalize_histogram_color(hist,image)
+        return norm_hist
+
+
     def histogram_equalization_color(self, image):
         eq = equal.Histogram_Equalization()
         # if image is grayscale
