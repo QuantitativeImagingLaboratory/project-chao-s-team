@@ -43,8 +43,6 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         self.displayHisto_cumulative()
         self.displayHisto_normalize()
 
-
-
     def saveButton(self):
         self.savehisttofile(self.savepath,self.hist_norm,'normalized')
         self.savehisttofile(self.savepath,self.hist_cum,'cumulative')
@@ -69,10 +67,9 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
 
 
     def displayHisto_normalize(self):
-        input_image = self.openImage()
-        self.hist_norm=filters.Transformation().histogram_equalization_normalize(input_image)
+        #input_image = self.openImage()
+        self.hist_norm=filters.Transformation().histogram_equalization_normalize(self.img)
         scene = QtWidgets.QGraphicsScene(self)
-        #self.scene = scene
         figure = Figure()
         axes = figure.gca()
         axes.set_title("Normalized Histogram")
@@ -83,13 +80,13 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         self.hist1.setScene(scene)
 
     def displayHisto_cumulative(self):
-        input_image = self.openImage()
-        self.hist_cum=filters.Transformation().histogram_equalization_cumulative(input_image)
+        #input_image = self.openImage()
+        self.hist_cum=filters.Transformation().histogram_equalization_cumulative(self.img)
         scene = QtWidgets.QGraphicsScene(self)
         #self.scene = scene
         figure = Figure()
         axes = figure.gca()
-        axes.set_title("Normalized Histogram")
+        axes.set_title("Cumulative Histogram")
         axes.plot(self.hist_cum)
         canvas = FigureCanvas(figure)
         canvas.setGeometry(0, 0, 430, 220)
@@ -98,9 +95,9 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
 
 
     def processImage(self,input_image):
-        img=filters.Transformation().histogram_equalization(input_image)
+        self.img=filters.Transformation().histogram_equalization(input_image)
         print("equal")
-        return img
+        return self.img
 
     def openImage(self):
         input_image = cv2.imread(self.fileName,0)
