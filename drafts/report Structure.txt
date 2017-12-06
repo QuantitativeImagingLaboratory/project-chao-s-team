@@ -1,6 +1,6 @@
 Introduction of Intensity Transformation (over all)
 
-1. Object of the module
+1. Objective of the module
 2. ALgorithm design of the module
 3. result (sample screenshot)
 
