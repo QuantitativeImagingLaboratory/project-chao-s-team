@@ -21,6 +21,7 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
         self.type=flag
 
     def loadImage(self):
+        """
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         self.fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Select Image for Transformation", "","All Files (*);;Python Files (*.py)",options=options)
@@ -30,6 +31,9 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
             self.OriginalImage.setScaledContents(True)
             self.OriginalImage.setPixmap(pixmap)
             #self.resize(pixmap.width(),pixmap.height())
+            """
+        self.fileName=self.DisplayImage(self.OriginalImage)
+            
 
     def RunBttn(self):
         try:

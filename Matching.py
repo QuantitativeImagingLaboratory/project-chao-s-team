@@ -25,6 +25,7 @@ class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.
         self.type=flag
 
     def loadImage(self):
+        """
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         self.fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Select Image for Transformation", "","All Files (*);;Python Files (*.py)",options=options)
@@ -33,9 +34,13 @@ class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.
             pixmap = QtGui.QPixmap(self.fileName)
             self.OriginalImage.setScaledContents(True)
             self.OriginalImage.setPixmap(pixmap)
+        """
             #self.resize(pixmap.width(),pixmap.height())
 
+        self.fileName=self.DisplayImage(self.OriginalImage)
+
     def loadRefImage(self):
+        """
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         self.fileNameRef, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Select Image for Transformation", "","All Files (*);;Python Files (*.py)",options=options)
@@ -45,13 +50,16 @@ class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.
             self.imageRef.setScaledContents(True)
             self.imageRef.setPixmap(pixmap)
             #self.resize(pixmap.width(),pixmap.height())
+            """
+        self.fileNameRef=self.DisplayImage(self.imageRef)
 
     def RunBttn(self):
         try:
             self.displayProcessedIamge()
+            self.displayhisto()
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
-        self.displayhisto()
+
     def saveButton(self):
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)

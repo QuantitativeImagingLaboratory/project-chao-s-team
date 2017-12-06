@@ -3,7 +3,7 @@ from datetime import datetime
 import cv2
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
-# handle saving file to disk
+# handle saving file to disk and some commone functions
 class SaveFunctions:     
     def saveImagePath(self):
         options = QtWidgets.QFileDialog.Options()
@@ -62,5 +62,24 @@ class SaveFunctions:
         image.setColorTable(gray_color_table)
         pix = QtGui.QPixmap(image)
         return pix
+
+    def DisplayImage(self,labelname):
+        options = QtWidgets.QFileDialog.Options()
+        options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Select Image for Transformation", "","All Files (*);;Python Files (*.py)",options=options)
+        if fileName:
+            print(fileName)
+            pixmap = QtGui.QPixmap(fileName)
+            labelname.setScaledContents(True)
+            labelname.setPixmap(pixmap)
+        return fileName
+
+    def loadImage_grayscale(self,fileName):
+        input_image = cv2.imread(fileName, 0)
+        return input_image
+
+    def loadImage_color(self,fileName):
+        input_image = cv2.imread(fileName)
+        return input_image
 
 

@@ -29,7 +29,6 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
     #histgram color
     def histogramColor(self):
         Histogram_Color(self).show()
-    
     #gamma 
     def openSubWin_img(self):
         Sub_img(self).show()
