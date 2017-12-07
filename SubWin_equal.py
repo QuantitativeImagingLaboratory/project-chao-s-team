@@ -36,18 +36,19 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
     def RunBttn(self):
         try:
             self.displayProcessedIamge()
+            self.displayHisto_normalize()
+            self.displayHisto_normalize_after()
 
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
         
-        self.displayHisto_cumulative()
-        self.displayHisto_normalize()
+        
 
     def saveButton(self):
-        self.savehisttofile(self.savepath,self.hist_norm,'normalized')
-        self.savehisttofile(self.savepath,self.hist_cum,'cumulative')
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)
+            self.savehisttofile(self.savepath,self.hist_norm,'Original')
+            self.savehisttofile(self.savepath,self.hist_norm_after,'Normalized')
             if saved:
                 print('saved')
             else:
@@ -67,8 +68,21 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
 
 
     def displayHisto_normalize(self):
+        input_image = self.openImage()
+        self.hist_norm=filters.Transformation().compute_histogram(input_image)
+        scene = QtWidgets.QGraphicsScene(self)
+        figure = Figure()
+        axes = figure.gca()
+        axes.set_title("Histogram of Original Image")
+        axes.plot(self.hist_norm)
+        canvas = FigureCanvas(figure)
+        canvas.setGeometry(0, 0, 430, 220)
+        scene.addWidget(canvas)
+        self.hist1.setScene(scene)
+
+    def displayHisto_normalize_after(self):
         #input_image = self.openImage()
-        self.hist_norm=filters.Transformation().histogram_equalization_normalize(self.img)
+        self.hist_norm_after=filters.Transformation().histogram_equalization_normalize(self.img)
         scene = QtWidgets.QGraphicsScene(self)
         figure = Figure()
         axes = figure.gca()
@@ -77,23 +91,8 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         canvas = FigureCanvas(figure)
         canvas.setGeometry(0, 0, 430, 220)
         scene.addWidget(canvas)
-        self.hist1.setScene(scene)
-
-    def displayHisto_cumulative(self):
-        #input_image = self.openImage()
-        self.hist_cum=filters.Transformation().histogram_equalization_cumulative(self.img)
-        scene = QtWidgets.QGraphicsScene(self)
-        #self.scene = scene
-        figure = Figure()
-        axes = figure.gca()
-        axes.set_title("Cumulative Histogram")
-        axes.plot(self.hist_cum)
-        canvas = FigureCanvas(figure)
-        canvas.setGeometry(0, 0, 430, 220)
-        scene.addWidget(canvas)
         self.hist2.setScene(scene)
-
-
+  
     def processImage(self,input_image):
         self.img=filters.Transformation().histogram_equalization(input_image)
         print("equal")
