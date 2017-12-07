@@ -81,8 +81,7 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         self.hist1.setScene(scene)
 
     def displayHisto_normalize_after(self):
-        #input_image = self.openImage()
-        self.hist_norm_after=filters.Transformation().histogram_equalization_normalize(self.img)
+        self.hist_norm_after=filters.Transformation().compute_histogram(self.img)
         scene = QtWidgets.QGraphicsScene(self)
         figure = Figure()
         axes = figure.gca()
