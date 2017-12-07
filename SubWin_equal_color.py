@@ -133,7 +133,8 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
         return self.img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName)
+        #input_image = cv2.imread(self.fileName)
+        input_image=self.loadImage_color(self.fileName)
         print(input_image.dtype)
         return input_image
 

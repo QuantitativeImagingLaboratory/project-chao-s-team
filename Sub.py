@@ -71,7 +71,8 @@ class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow,UIFunctions.SaveFunctions)
         return hist
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName, 0)
+        #input_image = cv2.imread(self.fileName, 0)
+        input_image = self.loadImage(self.fileName)
         return input_image
         
         

@@ -104,5 +104,6 @@ class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.
         return self.img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName, 1)
+        #input_image = cv2.imread(self.fileName, 1)
+        input_image = self.loadImage_color(self.fileName)
         return input_image

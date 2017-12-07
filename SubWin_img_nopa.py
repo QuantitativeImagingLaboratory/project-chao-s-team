@@ -79,6 +79,7 @@ class Sub_img_nopa(QtWidgets.QMainWindow, SubWinNop.Ui_MainWindow,UIFunctions.Sa
         return img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName, 1)
+        #input_image = cv2.imread(self.fileName, 1)
+        input_image=self.loadImage_color(self.fileName)
         return input_image
     

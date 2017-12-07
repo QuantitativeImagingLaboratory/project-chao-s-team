@@ -77,7 +77,8 @@ class Sub_img(QtWidgets.QMainWindow, SubWin_img.Ui_MainWindow,UIFunctions.SaveFu
         return img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName)
+        #input_image = cv2.imread(self.fileName)
+        input_image=self.loadImage_color(self.fileName)
         return input_image
 
     def getParameterValue(self):

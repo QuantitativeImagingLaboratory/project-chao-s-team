@@ -100,9 +100,9 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         return self.img
 
     def openImage(self):
-        input_image = cv2.imread(self.fileName,0)
-        print(input_image.dtype)
+        input_image=self.loadImage_grayscale(self.fileName)
         return input_image
+    
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

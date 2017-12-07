@@ -76,10 +76,14 @@ class SaveFunctions:
 
     def loadImage_grayscale(self,fileName):
         input_image = cv2.imread(fileName, 0)
+        if input_image.dtype != 'uint8':
+            box=QtWidgets.QMessageBox.about(self,"error","Please select image with type of uint8")
         return input_image
 
     def loadImage_color(self,fileName):
         input_image = cv2.imread(fileName)
+        if input_image.dtype != 'uint8':
+            box=QtWidgets.QMessageBox.about(self,"error","Please select image with type of uint8")
         return input_image
 
 
