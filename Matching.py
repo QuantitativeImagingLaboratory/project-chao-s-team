@@ -63,6 +63,7 @@ class Matching(QtWidgets.QMainWindow, HistoMatchingUI.Ui_MainWindow,UIFunctions.
     def saveButton(self):
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)
+            self.savehistofile_color(self.savepath,self.hists,'Histogram of Processed Image')
             if saved:
                 print('saved')
             else:

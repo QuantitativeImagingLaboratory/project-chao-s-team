@@ -72,7 +72,7 @@ class Sub(QtWidgets.QMainWindow, SubWin.Ui_MainWindow,UIFunctions.SaveFunctions)
 
     def openImage(self):
         #input_image = cv2.imread(self.fileName, 0)
-        input_image = self.loadImage(self.fileName)
+        input_image = self.loadImage_grayscale(self.fileName)
         return input_image
         
         

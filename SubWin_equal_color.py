@@ -53,9 +53,9 @@ class Sub_equal_color(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFun
 
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)
-            saved2=self.savehistofile_color(self.savepath,self.hists_before,'Original Image')
-            saved3=self.savehistofile_color(self.savepath,self.hists_after,'Processed Image')
-            if saved and saved2 and saved3:
+            self.savehistofile_color(self.savepath,self.hists_before,'Original Image')
+            self.savehistofile_color(self.savepath,self.hists_after,'Processed Image')
+            if saved:
                 print('saved')
             else:
                 box=QtWidgets.QMessageBox.about(self,"error","Error with save image to disk")
