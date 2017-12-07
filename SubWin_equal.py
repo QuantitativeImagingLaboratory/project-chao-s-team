@@ -41,7 +41,7 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
 
         except:
             box=QtWidgets.QMessageBox.about(self,"Select Input Image First","Input image is not selected")
-        
+   
         
 
     def saveButton(self):
@@ -79,6 +79,7 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         canvas.setGeometry(0, 0, 430, 220)
         scene.addWidget(canvas)
         self.hist1.setScene(scene)
+  
 
     def displayHisto_normalize_after(self):
         self.hist_norm_after=filters.Transformation().compute_histogram(self.img)
@@ -86,11 +87,12 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         figure = Figure()
         axes = figure.gca()
         axes.set_title("Normalized Histogram")
-        axes.plot(self.hist_norm)
+        axes.plot(self.hist_norm_after)
         canvas = FigureCanvas(figure)
         canvas.setGeometry(0, 0, 430, 220)
         scene.addWidget(canvas)
         self.hist2.setScene(scene)
+        
   
     def processImage(self,input_image):
         self.img=filters.Transformation().histogram_equalization(input_image)
