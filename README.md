@@ -9,6 +9,12 @@ Please save all script files under same directory
 Run:
 python Main.py
 
+1. select tranformation from the main window
+2. click on 'select image' to load image
+3. clock on 'select directory to save transformed image' to select directory where you want the image to be saved
+4. click on 'run' to excute 
+5. click on 'save' to save image, directory needs to be selected before cliking on save
+
 
 Transformation.py: algorithms for performing transformation
 SubWin_equal_color.py: Histogram equalization color
