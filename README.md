@@ -10,7 +10,7 @@ Run:
 python Main.py
 
 
-
+Transformation.py: algorithms for performing transformation
 SubWin_equal_color.py: Histogram equalization color
 SubWin_equal.py: Histogram equalization grayscale
 Matching.py: Hisgogram Matching

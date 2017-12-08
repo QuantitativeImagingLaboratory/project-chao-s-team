@@ -3,7 +3,7 @@ import numpy as np
 import HistEqualization as equal
 import io
 import base64
-
+# algorithms for performing transformation
 class Transformation(object):
     def compute_histogram(self, image):
         """Computes the histogram of the input image
@@ -104,6 +104,7 @@ class Transformation(object):
 
 
     def negative(self,image):
+        image = np.uint8(image)
 
         return 255-image
 

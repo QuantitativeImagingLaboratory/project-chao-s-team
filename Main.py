@@ -35,16 +35,16 @@ class Main(QtWidgets.QMainWindow, MainWin.Ui_MainWindow):
     #negative
     def negative(self):
         Sub_img_nopa(self,'neg').show()
-
+    #logarithmic 
     def log(self):
         Sub_img_nopa(self,'log').show()
-
+    #equalization grayscale
     def equal(self):
         Sub_equal(self,'equal').show()
-    
+    #equalization color
     def equal_color(self):
         Sub_equal_color(self,'equal_color').show()
-        
+    # histogram matching
     def matching(self):
         Matching(self,'matching').show()
     
