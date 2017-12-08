@@ -47,8 +47,8 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
     def saveButton(self):
         try:
             saved=self.savetofile(self.savepath,self.img,self.type)
-            self.savehisttofile(self.savepath,self.hist_norm,'Original')
-            self.savehisttofile(self.savepath,self.hist_norm_after,'Normalized')
+            self.savehisttofile(self.savepath,self.hist_norm,'Original Image')
+            self.savehisttofile(self.savepath,self.hist_norm_after,'Processed Image')
             if saved:
                 print('saved')
             else:
@@ -86,7 +86,7 @@ class Sub_equal(QtWidgets.QMainWindow, SubWin_equal_UI.Ui_MainWindow,UIFunctions
         scene = QtWidgets.QGraphicsScene(self)
         figure = Figure()
         axes = figure.gca()
-        axes.set_title("Normalized Histogram")
+        axes.set_title("Normalized Histogram of Processed Image")
         axes.plot(self.hist_norm_after)
         canvas = FigureCanvas(figure)
         canvas.setGeometry(0, 0, 430, 220)
